@@ -25,8 +25,10 @@ passwords=(
 	[bitnami-edx_1]="bitnami"
 	)
 
-#check if sshpass is installed and install it if not
+#make a directory 
+mkdir -p ~/backup 
 
+#check if sshpass is installed and install it if not
 if ! (dpkg-query -l sshpass) > /dev/null; then
    echo -e "sshpass not installed, installing (sudo might be required)... "
    sudo apt install sshpass
@@ -54,7 +56,11 @@ do
 	echo
 
 	# build .ova in home directory to then transport to medemer
-	VBoxManage export $i -o $i.ova
+	VBoxManage export $i -o ~/backup/$i-$(date +"%m-%d-%y").ova
+
+	# Copy backed up file to remote backup folder
+	rsync -e 'ssh -p 22' -avzp ~/backup medemer@172.16.10.8:~/backup
+
 
 
 done
