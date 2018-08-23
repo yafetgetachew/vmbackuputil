@@ -14,15 +14,15 @@ echo
 declare -A virtualmachines
 
 virtualmachines=(
-	[bitnami-edx_1]="172.16.10.249"
+	[bitnami-edx]="172.16.10.249"
 	)
 
 users=(
-	[bitnami-edx_1]="bitnami"
+	[bitnami-edx]="bitnami"
 	)
 
 passwords=(
-	[bitnami-edx_1]="bitnami"
+	[bitnami-edx]="bitnami"
 	)
 
 #make a directory 
