@@ -7,7 +7,7 @@ Before you do anything with the shellscript you should create an RSA key with
 then you should copy your public key to medemer with 
 
 ```
-	ssh-copy-id -i ~/.ssh/id_rsa.pub medemer@172.16.10.8
+	ssh-copy-id -i ~/.ssh/id_rsa.pub BACKUP_SERVER_USERNAME@BACKUP_SERVER_IP
 
 	ssh-add
 ```
@@ -15,7 +15,7 @@ then you should copy your public key to medemer with
 make sure you have passwordless ssh access with 
 
 ```
-	ssh medemer@172.16.10.8
+	ssh BACKUP_SERVER_USERNAME@BACKUP_SERVER_IP
 ```
 
 

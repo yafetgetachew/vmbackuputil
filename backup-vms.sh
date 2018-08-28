@@ -1,14 +1,14 @@
 #!/bin/bash
 #
 #
-#	Backup Virtual Machines on server Ethiopia to Medemer
+#	Backup Virtual Machines to SERVERNAME 
 #
 #
 #
 
 # create array with names, ips, usernames and passwords of virtual machines
 echo
-echo "Camara Virtual Machine Backup Utility 0.1"
+echo "Backup utility for VirtualBox virtual machines"
 echo
 
 ssh-add
@@ -16,24 +16,15 @@ ssh-add
 declare -A virtualmachines
 
 virtualmachines=(
-	[bitnami-edx]="172.16.10.249"
-	[ubuntu_nms]="172.16.10.10"
-	[ubuntu_kolibri_new]="172.16.10.15"
-
+	[VIRTUAL_MACHINE_NAME]="VIRTUAL_MACHINE_IPADDRESS"
 	)
 
 users=(
-	[bitnami-edx]="bitnami"
-	[ubuntu_nms]="camaraadmin"
-	[ubuntu_kolibri_new]="camaraadmin"
-
+	[VIRTUAL_MACHINE_NAME]="VIRTUAL_MACHINE_USERNAME"
 	)
 
 passwords=(
-	[bitnami-edx]="bitnami"
-	[ubuntu_nms]="Camara1604!"
-	[ubuntu_kolibri_new]="Camara1604!"
-
+	[VIRTUAL_MACHINE_NAME]="VIRTUAL_MACHINE_USER_PASSWORD"
 	)
 
 #make a directory 
@@ -70,7 +61,7 @@ do
 	VBoxManage export $i -o backup-vms/$i-$(date +"%m-%d-%y").ova
 
 	# Copy backed up file to remote backup folder
-	rsync -e 'ssh -p 22' -avzpi --progress backup-vms medemer@172.16.10.8:~/backup/backup-vms
+	rsync -e 'ssh -p 22' -avzpi --progress backup-vms BACKUP_SERVER_USER@BACKUP_SERVER_IP:~/backup/backup-vms
 	#rm -rf backup-vms/*
 
 	echo "SUCCESSFUL BACKUP OPERATION"
