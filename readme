@@ -14,7 +14,7 @@ then you should copy your public key to medemer with
 
 make sure you have passwordless ssh access with 
 
-```shell
+```console
 	ssh medemer@172.16.10.8
 ```
 
