@@ -11,11 +11,13 @@ echo
 echo "Camara Virtual Machine Backup Utility 0.1"
 echo
 
+ssh-add
+
 declare -A virtualmachines
 
 virtualmachines=(
 	[bitnami-edx]="172.16.10.249"
-	[ubuntu_nms]="172.16.10."
+	[ubuntu_nms]="172.16.10.10"
 	[ubuntu_kolibri_new]="172.16.10.15"
 
 	)
@@ -68,8 +70,8 @@ do
 	VBoxManage export $i -o backup-vms/$i-$(date +"%m-%d-%y").ova
 
 	# Copy backed up file to remote backup folder
-	rsync -e 'ssh -p 22' -avzp backups medemer@172.16.10.8:~/backup-vms
-	rm -rf backup-vms/*
+	rsync -e 'ssh -p 22' -avzpi --progress backup-vms medemer@172.16.10.8:~/backup/backup-vms
+	#rm -rf backup-vms/*
 
 	echo "SUCCESSFUL BACKUP OPERATION"
 done
