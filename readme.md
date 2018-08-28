@@ -4,7 +4,7 @@ Before you do anything with the shellscript you should create an RSA key with
 	ssh-keygen
 ```
 
-then you should copy your public key to medemer with 
+then you should copy your public key to remote backup server with 
 
 ```shell
 	ssh-copy-id -i ~/.ssh/id_rsa.pub BACKUP_SERVER_USERNAME@BACKUP_SERVER_IP
